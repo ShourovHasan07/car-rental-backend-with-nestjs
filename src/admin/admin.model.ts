@@ -11,34 +11,35 @@ import {
   tableName: 'admins',
   timestamps: true,
 })
-export class Admin extends Model<Admin> {
+export class Admin extends Model {
+
   @PrimaryKey
   @AutoIncrement
   @Column(DataType.INTEGER)
-  declare id: number; // <-- declare ব্যবহার করতে হবে
+  declare id: number;
 
   @Column(DataType.STRING(150))
-  name: string;
+  declare name: string;
 
   @Column({
     type: DataType.STRING(150),
     allowNull: false,
     unique: true,
   })
-  email: string;
+  declare email: string;
 
   @Column(DataType.STRING)
-  password: string;
+  declare password: string;
 
   @Column({
     type: DataType.STRING,
     defaultValue: 'ADMIN',
   })
-  role: string;
+  declare role: string;
 
   @Column({
     type: DataType.BOOLEAN,
     defaultValue: true,
   })
-  status: boolean;
+  declare status: boolean;
 }

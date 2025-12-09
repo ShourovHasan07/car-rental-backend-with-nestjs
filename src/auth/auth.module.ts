@@ -1,13 +1,11 @@
 // src/modules/auth/auth.module.ts
-
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
-import { AuthController } from './auth.controller';
-import { AuthService } from './auth.service';
-import { JwtStrategy } from './jwt.strategy/jwt.strategy';
-
 import { SequelizeModule } from '@nestjs/sequelize';
+import { AuthService } from './auth.service';
+import { AuthController } from './auth.controller';
+import { JwtStrategy } from './jwt.strategy/jwt.strategy';
 import { Admin } from '../admin/admin.model';
 import { User } from '../users/user.model';
 
@@ -22,5 +20,6 @@ import { User } from '../users/user.model';
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
+  exports: [AuthService],
 })
 export class AuthModule {}
