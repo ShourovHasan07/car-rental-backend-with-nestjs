@@ -39,30 +39,10 @@ export class User extends Model<User> {
   })
   declare email: string;
 
-  @Column(DataType.STRING(100))
-  declare phone: string;
-
-  @Column(DataType.DATE)
-  declare dob: Date;
-
-  @Column(DataType.STRING(50))
-  declare gender: string;
-
-  @ForeignKey(() => User) // তুমি চাইলে Country model পরে বসাতে পারো
-  @Column(DataType.INTEGER)
-  declare countryId: number;
-
-  @Column(DataType.STRING(100))
-  declare city: string;
-
-  @Column(DataType.STRING(100))
-  declare whatsapp: string;
-
   @Column(DataType.STRING(255))
   declare password: string;
 
-  @Column(DataType.STRING(255))
-  declare image: string;
+  
 
   @Column({
     type: DataType.BOOLEAN,
