@@ -8,6 +8,8 @@ import { AuthController } from './auth.controller';
 import { JwtStrategy } from './jwt.strategy/jwt.strategy';
 import { Admin } from '../admin/admin.model';
 import { User } from '../users/user.model';
+import { AuthUserController } from './auth.user.controller';
+import { AuthUserService } from './auth.user.service';
 
 @Module({
   imports: [
@@ -18,8 +20,8 @@ import { User } from '../users/user.model';
     }),
     SequelizeModule.forFeature([Admin, User]),
   ],
-  controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
-  exports: [AuthService],
+  controllers: [AuthController,AuthUserController],
+  providers: [AuthService,  AuthUserService, JwtStrategy],
+  exports: [AuthService,AuthUserService ],
 })
 export class AuthModule {}

@@ -9,19 +9,23 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import { CarsModule } from './cars/cars.module';
+import { BookingModule } from './bookings/booking.module';
 
 
 @Module({
   imports: [
     SequelizeModule.forRoot(databaseConfig),
 
-    // ✅ Global Model Register
+    //  Global Model Register
     SequelizeModule.forFeature([User, Admin]),
 
     UsersModule,
     AuthModule,
     AdminModule,
     CarsModule,
+
+    BookingModule,
+
     
   ],
 })

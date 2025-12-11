@@ -1,7 +1,8 @@
+// src/modules/auth/auth-user.service.ts
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { JwtService } from '@nestjs/jwt';
-import { User } from '../users/user.model';
+import { User, UserCreationAttributes } from '../users/user.model';
 import { ClerkLoginDto } from './dto/clerk-login.dto';
 
 @Injectable()
@@ -14,21 +15,18 @@ export class AuthUserService {
   async clerkLogin(data: ClerkLoginDto) {
     const { clerkId, email, name } = data;
 
-    // 1. Check user exists
     let user = await this.userModel.findOne({ where: { email } });
 
-    // 2. If not exists → Create
     if (!user) {
       user = await this.userModel.create({
         clerkId,
         email,
         name,
-        password: '', // clerk users don't need password
+        password: '',
         status: true,
-      });
+      } as UserCreationAttributes);
     }
 
-    // 3. Create JWT
     const token = this.jwtService.sign({
       id: user.id,
       email: user.email,

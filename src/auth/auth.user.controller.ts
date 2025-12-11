@@ -1,6 +1,6 @@
 // src/modules/auth/auth-user.controller.ts
 import { Controller, Post, Body } from '@nestjs/common';
-import { AuthUserService } from './auth-user.service';
+import { AuthUserService } from './auth.user.service';
 import { ClerkLoginDto } from './dto/clerk-login.dto';
 
 @Controller('auth/user')

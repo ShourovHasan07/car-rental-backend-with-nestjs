@@ -3,15 +3,24 @@ import {
   Column,
   Model,
   DataType,
-  ForeignKey,
 } from 'sequelize-typescript';
+import { Optional } from 'sequelize';
+
+// ======= ADD THIS INTERFACE (IMPORTANT) ==========
+export interface UserCreationAttributes
+  extends Optional<
+    User,
+    'id' | 'password' | 'deletedAt' | 'createdAt' | 'updatedAt'
+  > {}
+// ===============================================
 
 @Table({
   tableName: 'users',
   timestamps: true,
-  paranoid: true, // for deletedAt
+  paranoid: true,
 })
-export class User extends Model<User> {
+// IMPORTANT → Add UserCreationAttributes here
+export class User extends Model<User, UserCreationAttributes> {
   @Column({
     type: DataType.INTEGER,
     primaryKey: true,
@@ -39,10 +48,12 @@ export class User extends Model<User> {
   })
   declare email: string;
 
-  @Column(DataType.STRING(255))
+  @Column({
+    type: DataType.STRING(255),
+    allowNull: true,
+    defaultValue: '',
+  })
   declare password: string;
-
-  
 
   @Column({
     type: DataType.BOOLEAN,
