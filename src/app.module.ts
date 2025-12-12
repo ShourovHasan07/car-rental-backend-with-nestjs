@@ -10,6 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import { CarsModule } from './cars/cars.module';
 import { BookingModule } from './bookings/booking.module';
+import { PaymentsModule } from './payments/payments.module';
 
 
 @Module({
@@ -25,6 +26,7 @@ import { BookingModule } from './bookings/booking.module';
     CarsModule,
 
     BookingModule,
+    PaymentsModule,
 
     
   ],
